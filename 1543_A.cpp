@@ -4,19 +4,19 @@
 #include<cmath>
 using namespace std;
 void solve() {
-    int a,b;
+    long long int a,b;
     cin>>a>>b;
-    int gap=abs(a-b);
+    long long int gap=abs(a-b);
     if(gap==0){
         cout<<0<<endl;
         cout<<0<<endl;
         return;
     }
-    int rem=a%gap;
-    int div=a/gap;
-    div=(div+1)*gap;
+    long long int rem=a%gap;
+    long long int div=a/gap;
+    div=1ll*(div+1)*gap;
     cout<<gap<<endl;
-    cout<<min(rem,div-a)<<endl;
+    cout<<min(1ll*rem,div-a)<<endl;
     
 }
 

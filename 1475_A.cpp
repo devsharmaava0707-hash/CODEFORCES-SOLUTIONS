@@ -13,7 +13,7 @@ void solve() {
         cout<<"YES"<<endl;
         return;
     }
-    while(n!=0){
+    while(n!=1){
         if(n%2!=0){
             cout<<"YES"<<endl;
             return;

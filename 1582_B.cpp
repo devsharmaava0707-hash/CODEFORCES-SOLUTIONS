@@ -18,8 +18,9 @@ void solve() {
         if(ans[i]==1) count1++;
     }
     if(count1==0) {cout<<0<<endl;return;}
-    // int no=pow(2,count0);
-    cout<<1ll*count1*pow(2,count0)<<endl;
+    // int no=pow(2,count0); remember not to use pow as it gives the value which we did not want it return a double which cause problem of floating point numbers try to use always bitwise operators
+    long long result = 1LL * count1 * (1LL << count0);
+    cout << result << '\n';
 
 }
 
