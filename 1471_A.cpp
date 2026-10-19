@@ -11,29 +11,23 @@ void solve() {
     for(int i=0;i<n;i++){
         cin>>ans[i];
     }
-    int sum=0;
-    for(int i=0;i<n-1;i++){
-        if(ans[i]%x!=0){
-            ans[i+1]=ans[i]+ans[i+1];
-        }
-        if(ans[i]%x==0){
-            sum=sum+(ans[i]/x);
-        }
+    long long int sum=0;
+    for(int i=0;i<n;i++){
+        sum=sum+1ll*ans[i];
     }
-    sum=sum+ans[n-1]/x;
+    if(sum%x==0){
+        sum=sum/x;
+    }
+    else{
+        sum=sum/x+1;
+    }
     cout<<sum<<endl;
     sum=0;
-    for(int i=0;i<n-1;i++){
-        if(ans[i]%x==0){
-            ans[i+1]=ans[i]+ans[i+1];
-        }
-        if(ans[i]%x!=0){
-            sum=sum+(ans[i]/x)+4;
-        }
+    for(int i=0;i<n;i++){
+        if(ans[i]%x==0) sum=sum+1ll*ans[i]/x;
+        else sum=sum+ans[i]/x+1;
     }
-    sum=sum+ans[n-1]/x;
     cout<<sum<<endl;
-    
 }
 
 int main() {
