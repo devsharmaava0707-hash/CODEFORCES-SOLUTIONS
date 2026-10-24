@@ -3,48 +3,17 @@
 #include <algorithm>
 using namespace std;
 void solve() {
-    int n;
-    cin>>n;
-    int p;
-    cin>>p;
-    vector<int>share(n);
-    vector<int>cost(n);
-    for(int i=0;i<n;i++){
-        cin>>share[i];
-    }
-    for(int i=0;i<n;i++){
-        cin>>cost[i];
-    }
-    vector<int> idx(n);
+    long long int x,y,k;
+    cin>>x>>y>>k;
+    long long int sum=k+k*y-1;
+    long long int quoti=sum/(x-1);
+    long long int remi=sum%(x-1);
+    long long int finalreturn;
+    finalreturn=quoti;
+    if(remi!=0) finalreturn++;
+    
+    cout<<finalreturn+k<<endl;
 
-    for (int i = 0; i < n; i++) {
-        idx[i] = i;
-    }
-
-    sort(idx.begin(), idx.end(), [&](int i, int j) {
-        if (cost[i] != cost[j]) return cost[i] < cost[j];
-        return share[i] > share[j];
-    });
-    if(n==1){
-        cout<<p<<endl;
-        return;
-    }
-    long long int sum=p;
-    int right=1,left=0;
-    while(right<n && left<n){
-        if(cost[idx[left]]<p){
-            sum=sum+min(1ll*(cost[idx[left]]*1ll*share[idx[left]]),1ll*cost[idx[left]]*(n-right));
-            cout<<sum<<endl;
-            right=right+share[idx[left]];
-            // sum=sum+min((cost[idx[left]]*share[idx[left]]),cost[idx[left]]*(n-right));
-            left++;
-        }
-        else break;
-    }
-    if(right<n){
-        sum=sum+(n-right)*p;
-    }
-    cout<<sum<<endl;
 }
 
 int main() {
