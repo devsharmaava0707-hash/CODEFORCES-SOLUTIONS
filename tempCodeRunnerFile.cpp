@@ -5,58 +5,42 @@ using namespace std;
 void solve() {
     int n;
     cin>>n;
-    vector<int>a1(n);
-    vector<int>a2(n);
+    vector<long long int>ans(n);
+    int count=0;
+    int count0=0;
     for(int i=0;i<n;i++){
-        cin>>a1[i];
+        cin>>ans[i];
+        if(ans[i]<0) count++;
+        if(ans[i]==0) count0++;
     }
-    for(int i=0;i<n;i++){
-        cin>>a2[i];
-    }
-    int left=0;
-    for(;left<n;left++){
-        if(a1[left]!=a2[left]) break;
-    }
-    if(left==n){
-        int left=0,right=0;
-        int max_left,max_right;
-        int maxsort=0;
-        int count=1;
-        for(int i=0;i<n-1;i++){
-            if(a1[i+1]>=a1[i]){
-                right=i;
-                count++;
-            }
-            else{
-                if(maxsort<count){
-                    maxsort=count;
-                    max_left=left;
-                    max_right=right;
-                }
-                count=1;
-                left=i,right=i;
-            } 
+    long long int sum=0;
+    if(((count%2==1) && (count0>0)) || count%2==0){
+        for(int i=0;i<n;i++){
+            sum=sum+abs(ans[i]);
         }
-        if(maxsort<count){
-                    maxsort=count;
-                    max_left=left;
-                    max_right=right+1;
-                }
-        cout<<max_left+1<<"\n"<<max_right+1<<"\n";
+        cout<<sum<<"\n";
         return;
     }
     else{
-        int i=left;
-        for(;i<n;i++){
-            if(a2[i]<=a2[i+1]) i++;
-            else break;
+        long long int maxin=LLONG_MIN;
+        long long int minip=LLONG_MAX;
+        // long long int minin=LLONG_MIN;
+        for(int i=0;i<n;i++){
+            if(ans[i]<0){
+                maxin=max(maxin,abs(ans[i]));
+            }
+            if(ans[i]>0){
+                minip=min(minip,ans[i]);
+            }
+            sum=sum+abs(ans[i]);
         }
-        while(left>0 && a2[left]>=a2[left-1]){
-            left--;
+        if(maxin>minip){
+            sum=sum-2*minip;
         }
-
-        cout<<left+1<<"\n"<<i<<"\n";
+        else sum=sum-2*maxin;
+        cout<<sum<<"\n";
     }
+
 }
 
 int main() {
